@@ -1,4 +1,5 @@
-# Qwiklabs Developer Club SRM - Demon Slayer Themed Website 🌸🔥⚔️
+##Demonstrate your ability to provision, configure, and deploy a static website by hosting it exclusively on a cloud Virtual Machine (VM) instance. This exercise evaluates your technical depth, problem-solving skills, and ability to take end-to-end ownership of a deployment scenario.
+
 
 This repository contains:
 - Static website (HTML, CSS, JS)  
@@ -30,8 +31,43 @@ This repository contains:
 SSH into the VM:
 ```bash
 ssh -i "my-key.pem" ubuntu@<PUBLIC_IP>
+```
 
----
+to update packages - 
+``` bash
+sudo apt update && sudo apt upgrade -y
+```
+to install nginx - sudo apt install nginx -y
 
-## 2. Web Server Installation (Nginx)
+to check status - sudo systemctl status nginx
+
+<img width="1457" height="839" alt="Screenshot From 2025-08-25 23-25-53" src="https://github.com/user-attachments/assets/f3ad8746-4598-4815-b7f0-d10a7deb6e14" />
+
+
+and i have also edited soeme inbound rules to http because running it on http protocol - http://3.27.14.181/
+
+
+sudo ufw status
+
+<img width="779" height="333" alt="Screenshot From 2025-08-25 23-28-42" src="https://github.com/user-attachments/assets/1498b165-f006-4341-b269-bd4607d17342" />
+
+
+nginx config - 
+```nginx
+server {
+    listen 80;
+    server_name _;
+
+    root /var/www/temperature-app;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+```
+for testing and reloading 
+sudo nginx -t
+sudo systemctl reload nginx
+
 
