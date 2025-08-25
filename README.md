@@ -64,7 +64,20 @@ sudo chown -R /var/www/temperature-app
 ```
 
 for nginx config files - 
-``` sudo nano /etc/nginx/sites-available/temperature-app
+```
+##sudo nano /etc/nginx/sites-available/temperature-app##
+server {
+    listen 80;
+    server_name _;
+
+    root /var/www/temperature-app;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+
 ```
 
 nginx config - 
