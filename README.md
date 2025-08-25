@@ -1,4 +1,4 @@
-##Demonstrate your ability to provision, configure, and deploy a static website by hosting it exclusively on a cloud Virtual Machine (VM) instance. This exercise evaluates your technical depth, problem-solving skills, and ability to take end-to-end ownership of a deployment scenario.
+Demonstrate your ability to provision, configure, and deploy a static website by hosting it exclusively on a cloud Virtual Machine (VM) instance. This exercise evaluates your technical depth, problem-solving skills, and ability to take end-to-end ownership of a deployment scenario.
 
 
 This repository contains:
@@ -37,6 +37,8 @@ to update packages -
 ``` bash
 sudo apt update && sudo apt upgrade -y
 ```
+to update - sudo apt update && sudo apt upgrade -y
+
 to install nginx - sudo apt install nginx -y
 
 to check status - sudo systemctl status nginx
@@ -47,10 +49,23 @@ to check status - sudo systemctl status nginx
 and i have also edited soeme inbound rules to http because running it on http protocol - http://3.27.14.181/
 
 
+also to check your status first allow nginx full and enable and ceck status 
+```
+sudo ufw allow 'Nginx Full'
+sudo ufw enable
 sudo ufw status
+```
+<imgwidth="779" height="333" alt="Screenshot From 2025-08-25 23-28-42" src="https://github.com/user-attachments/assets/1498b165-f006-4341-b269-bd4607d17342" />
 
-<img width="779" height="333" alt="Screenshot From 2025-08-25 23-28-42" src="https://github.com/user-attachments/assets/1498b165-f006-4341-b269-bd4607d17342" />
+try to create the folders and files and this manner altough can be changed from the config file =
+```file struct
+sudo mkdir -p /var/www/temperature-app
+sudo chown -R /var/www/temperature-app
+```
 
+for nginx config files - 
+``` sudo nano /etc/nginx/sites-available/temperature-app
+```
 
 nginx config - 
 ```nginx
@@ -66,8 +81,15 @@ server {
     }
 }
 ```
+ennable the config and disable defualt becuase by default nginx loads the premade nginx html page 
+```
+sudo ln -s /etc/nginx/sites-available/temperature-app /etc/nginx/sites-enabled/
+sudo rm /etc/nginx/sites-enabled/default
+```
+
 for testing and reloading 
 sudo nginx -t
 sudo systemctl reload nginx
 
 
+now you can just open the website as instance is running the url is http://3.27.14.181/
