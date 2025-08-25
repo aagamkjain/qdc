@@ -31,6 +31,7 @@ SSH into the VM:
 ```bash
 ssh -i "my-key.pem" ubuntu@<PUBLIC_IP>
 
+---
 
-
+## 2. Web Server Installation (Nginx)
 
